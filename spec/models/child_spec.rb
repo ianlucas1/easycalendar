@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe Child, type: :model do
   
   let(:mom) { User.create!(first_name: "Martha", last_name: "Ruth") }
-  let(:kid) { Child.create!(first_name: "Baby", last_name: "Ruth", age: 9, parent_id: mom.id) }
-
-  # puts "#{parent.first_name}"
+  let(:kid) { Child.create!(first_name: "Baby", last_name: "Ruth", age: 9, client_id: mom.id) }
 
   context "creating a new child" do
     
@@ -25,8 +23,8 @@ RSpec.describe Child, type: :model do
       expect(kid.age).to eq(9)
     end
 
-    it "should have a parent (user) association" do
-      expect(kid.parent).to eq(mom) 
+    it "should have a client (user) association" do
+      expect(kid.client).to eq(mom) 
     end
 
   end
