@@ -1,7 +1,8 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/ianlucas1/Desktop/easycalendar/app/models/child.rb": [
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/activity.rb": [
+        1,
         1,
         1,
         null
@@ -11,50 +12,91 @@
         1,
         null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/models/user.rb": [
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/appointment.rb": [
+        1,
+        1,
+        1,
+        1,
         1,
         1,
         null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/channels/application_cable/channel.rb": [
-        0,
-        0,
-        0,
-        0
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/child.rb": [
+        1,
+        1,
+        1,
+        null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/channels/application_cable/connection.rb": [
-        0,
-        0,
-        0,
-        0
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/client_location.rb": [
+        1,
+        1,
+        1,
+        null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/controllers/application_controller.rb": [
-        0,
-        0,
-        0
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/coach_activity.rb": [
+        1,
+        1,
+        1,
+        null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/controllers/welcome_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/coach_location.rb": [
+        1,
+        1,
+        1,
+        null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/helpers/application_helper.rb": [
-        0,
-        0
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/invite.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/jobs/application_job.rb": [
-        0,
-        0
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/location.rb": [
+        1,
+        1,
+        1,
+        null
       ],
-      "/Users/ianlucas1/Desktop/easycalendar/app/mailers/application_mailer.rb": [
-        0,
-        0,
-        0,
-        0
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/message.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/notification_receiver.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/notification.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/ianlucas1/Desktop/easycalendar/app/models/user.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1475262525
+    "timestamp": 1475280890
   }
 }

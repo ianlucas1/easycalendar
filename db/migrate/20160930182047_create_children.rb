@@ -4,7 +4,7 @@ class CreateChildren < ActiveRecord::Migration[5.0]
       t.string :first_name
       t.string :last_name
       t.integer :age
-      t.integer :parent_id
+      t.integer :client_id
 
       t.timestamps
     end
