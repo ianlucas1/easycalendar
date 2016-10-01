@@ -2,23 +2,31 @@ require 'rails_helper'
 
 RSpec.describe CoachLocation, type: :model do
   
-  let(:michelle_kwan) { User.create!(first_name: "Michelle", last_name: "Kwan") }
-  let(:iceArena) { Location.create!(name: "IceBox", address: "123 Way St.") }
-  let(:coach_location) { CoachLocation.create!(coach_id: michelle_kwan.id, location_id: iceArena.id) }
+  let(:coach_location) { create(:coach_location) }
 
   context "creating a new CoachLocation" do
-    
     it "creates a CoachLocation object" do
       expect(coach_location).to be_an_instance_of CoachLocation
     end
+  end
 
-    it "has a user association" do
-      expect(coach_location.coach).to eq(michelle_kwan)
+  context "validates associations" do
+    it "belongs to a coach" do
+      should belong_to(:coach)
     end
 
-    it "has a location association" do
-      expect(coach_location.location).to eq(iceArena)
+    it "belongs to a location" do
+      should belong_to(:location)
+    end
+  end
+
+  context "validates data" do
+    it "validates a coach is present" do
+      should validate_presence_of(:coach)
     end
 
+    it "validates a location is present" do
+      should validate_presence_of(:location)
+    end
   end
 end

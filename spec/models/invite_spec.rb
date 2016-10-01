@@ -2,33 +2,39 @@ require 'rails_helper'
 
 RSpec.describe Invite, type: :model do
   
-  let(:dad) { User.create!(first_name: "Mark", last_name: "Ruth") }
-  let(:michelle_kwan) { User.create!(first_name: "Michelle", last_name: "Kwan") }
-  let(:figure_skating) { Activity.create!(name: "Figure Skating") }
-  let(:michelle_kwan_figure_skating) { CoachActivity.create!(coach_id: michelle_kwan.id, activity_id: figure_skating.id) }
-  let(:invite) { Invite.create!(client_id: dad.id, coach_activity_id: michelle_kwan_figure_skating.id) }
+  let(:invite) { create(:invite) }
 
   context "creating a new invite" do
-    
     it "creates an Invite object" do
       expect(invite).to be_an_instance_of Invite
     end
-
-    it "has an associated client" do
-      expect(invite.client).to eq(dad)
-    end
-    
-    it "has an associated coach_activity" do
-      expect(invite.coach_activity).to eq(michelle_kwan_figure_skating)
-    end
-
-    it "has an associated coach" do
-      expect(invite.coach).to eq(michelle_kwan)
-    end   
-
-    it "has an associated activity" do
-      expect(invite.activity).to eq(figure_skating)
-    end 
-
   end
+
+  context "validates associations" do
+    it "belongs to a client" do
+      should belong_to(:client)
+    end
+
+    it "belongs to a coach_activity" do
+      should belong_to(:coach_activity)
+    end
+
+    it "has a coach" do
+      should have_one(:coach)
+    end  
+
+    it "has an activity" do
+      should have_one(:activity)
+    end  
+  end
+
+  context "validates data" do
+    it "validates a client is present" do
+      should validate_presence_of(:client)
+    end
+
+    it "validates a coach_activity is present" do
+      should validate_presence_of(:coach_activity)
+    end
+  end  
 end

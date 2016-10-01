@@ -1,12 +1,23 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/apprentice/easycalendar/app/models/user.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/helpers/home_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/helpers/sessions_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/user.rb": [
         1,
         null,
         null,
         1,
         null,
+        1,
+        1,
+        1,
         1,
         1,
         1,
@@ -30,124 +41,158 @@
         null,
         null
       ],
-      "/Users/apprentice/easycalendar/app/models/application_record.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/apprentice/easycalendar/app/controllers/home_controller.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/controllers/home_controller.rb": [
         1,
         1,
         null,
         null
       ],
-      "/Users/apprentice/easycalendar/app/helpers/home_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/helpers/sessions_helper.rb": [
-        1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/controllers/sessions_controller.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/controllers/sessions_controller.rb": [
         1,
         1,
         null,
-        1,
-        1,
+        0,
+        0,
         0,
         0,
         0,
         null,
         null,
         1,
-        1,
-        1,
+        0,
+        0,
         null,
         null,
         1,
         null,
         1,
-        1,
+        0,
         null,
         null
       ],
-      "/Users/apprentice/easycalendar/app/models/activity.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/activity.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/appointment.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         1,
         1,
         1,
         null
       ],
-      "/Users/apprentice/easycalendar/app/models/appointment.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/child.rb": [
         1,
         1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/client_location.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/coach_activity.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/coach_location.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/invite.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/location.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/message.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/apprentice/easycalendar/app/models/child.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/notification_receiver.rb": [
         1,
         1,
         1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/models/client_location.rb": [
-        1,
+        null,
         1,
         1,
         null
       ],
-      "/Users/apprentice/easycalendar/app/models/coach_activity.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/notification.rb": [
         1,
         1,
         1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/models/coach_location.rb": [
         1,
         1,
-        1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/models/invite.rb": [
-        1,
-        1,
-        1,
+        null,
         1,
         1,
         null
       ],
-      "/Users/apprentice/easycalendar/app/models/location.rb": [
-        1,
-        1,
-        1,
-        null
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/controllers/angular_test_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
       ],
-      "/Users/apprentice/easycalendar/app/models/message.rb": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/models/notification_receiver.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/models/notification.rb": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/apprentice/easycalendar/app/controllers/omniauth_callbacks_controller.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/controllers/omniauth_callbacks_controller.rb": [
         0,
         0,
         0,
@@ -166,13 +211,13 @@
         0,
         0
       ],
-      "/Users/apprentice/easycalendar/app/models/omniauthable.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/models/omniauthable.rb": [
 
       ],
-      "/Users/apprentice/easycalendar/app/services/calendar.rb": [
+      "/Users/clarabova/DevBootCamp/Salamanders/FinalProject/easycalendar/app/services/calendar.rb": [
 
       ]
     },
-    "timestamp": 1475289841
+    "timestamp": 1475359929
   }
 }

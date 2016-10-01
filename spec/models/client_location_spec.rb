@@ -2,23 +2,31 @@ require 'rails_helper'
 
 RSpec.describe ClientLocation, type: :model do
 
-  let(:mom) { User.create!(first_name: "Martha", last_name: "Ruth") }
-  let(:iceArena) { Location.create!(name: "IceBox", address: "123 Way St.") }
-  let(:client_location) { ClientLocation.create!(client_id: mom.id, location_id: iceArena.id) }
+  let(:client_location) { create(:client_location) }
 
   context "creating a new ClientLocation" do
-    
     it "creates a ClientLocation object" do
       expect(client_location).to be_an_instance_of ClientLocation
     end
+  end
 
-    it "has a user association" do
-      expect(client_location.client).to eq(mom)
+  context "validates associations" do
+    it "belongs to a client" do
+      should belong_to(:client)
     end
 
-    it "has a location association" do
-      expect(client_location.location).to eq(iceArena)
+    it "belongs to a location" do
+      should belong_to(:location)
+    end
+  end
+
+  context "validates data" do
+    it "validates a client is present" do
+      should validate_presence_of(:client)
     end
 
+    it "validates a location is present" do
+      should validate_presence_of(:location)
+    end
   end
 end

@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Child, type: :model do
   
-  let(:mom) { User.create!(first_name: "Martha", last_name: "Ruth") }
-  let(:kid) { Child.create!(first_name: "Baby", last_name: "Ruth", age: 9, client_id: mom.id) }
+  let(:kid) { create(:child) }
 
   context "creating a new child" do
-    
     it "creates a Child object" do
       expect(kid).to be_an_instance_of Child
     end
@@ -22,10 +20,21 @@ RSpec.describe Child, type: :model do
     it "has an age" do
       expect(kid.age).to eq(9)
     end
+  end
 
-    it "should have a client (user) association" do
-      expect(kid.client).to eq(mom) 
+  context "validates associations" do
+    it "belongs to a parent" do
+      should belong_to(:parent)
     end
 
+    it "has many appointments" do
+      should have_many(:appointments)
+    end
+  end
+
+  context "validates data" do
+    it "validates a parent is present" do
+      should validate_presence_of(:parent)
+    end
   end
 end
