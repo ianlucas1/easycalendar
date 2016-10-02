@@ -252,7 +252,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'],
   ENV['GOOGLE_CLIENT_SECRET'],
   { access_type: "offline", approval_prompt: "",
-  scope: 'userinfo.email,calendar, https://www.googleapis.com/auth/calendar, https://www.google.com/m8/feeds/' }
+  scope: 'userinfo.email,calendar, https://www.googleapis.com/auth/calendar, https://www.google.com/m8/feeds/, https://www.googleapis.com/auth/plus.login' }
 
 
   # ==> Warden configuration

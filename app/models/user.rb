@@ -1,4 +1,5 @@
 require "open-uri"
+require 'net/http'
 
 class User  < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -45,10 +46,19 @@ class User  < ActiveRecord::Base
   end
 
   def get_google_contacts
-    url = "https://www.google.com/m8/feeds/contacts/default/full?access_token=#{self.token}&alt=json&max-results=100"
-    response = open(url)
-    response = open(encoded_url)
-    json = JSON.parse(response.read)
+    uri = URI.parse("https://www.google.com/m8/feeds/contacts/default/full?max-results=50000")
+
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request['Authorization'] = "Token token=#{self.token}"
+
+
+    response = http.request(request)
+    # stuff = open(response)
+    json = JSON.parse(response.body)
     my_contacts = json['feed']['entry']
 
     my_contacts.each do |contact|
