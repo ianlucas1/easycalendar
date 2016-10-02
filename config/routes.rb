@@ -11,4 +11,11 @@ Easycalendar::Application.routes.draw do
   resource :home, only: [:show]
 
   root to: "home#show"
+
+  resource :messages do
+    collection do
+      post 'reply'
+    end
+  end
+
 end
