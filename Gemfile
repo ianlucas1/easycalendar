@@ -65,4 +65,5 @@ gem 'devise'
 gem 'bower-rails'
 gem 'angular-rails'
 
-gem 'cronofy'
+gem 'json'
+gem 'httparty'

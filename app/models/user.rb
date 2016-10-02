@@ -1,5 +1,6 @@
 require "open-uri"
-require 'net/http'
+require 'httparty'
+require 'json'
 
 class User  < ActiveRecord::Base
   # Include default devise modules. Others available are:
@@ -21,10 +22,17 @@ class User  < ActiveRecord::Base
   has_many :messages_received, class_name: "Message", foreign_key: :receiver_id
   has_many :messages_sent, class_name: "Message", foreign_key: :sender_id
 
+
+  has_many :contacts
+  has_many :events
+
   def self.find_for_google_oauth2(oauth, signed_in_resource=nil)
     credentials = oauth.credentials
     data = oauth.info
-    # puts data
+    puts "=======data=========="
+    puts data
+    puts "=======credentials=========="
+    puts credentials
     # puts credentials[:token]
     # self.token = credentials[:token]
     user = User.where(email: data["email"]).first
@@ -36,8 +44,8 @@ class User  < ActiveRecord::Base
         picture: data["image"],
         email: data["email"],
         password: Devise.friendly_token[0,20],
-        token: credentials[:token]
-        # refresh_token: credentials.refresh_token
+        token: credentials[:token],
+        refresh_token: credentials.refresh_token
      )
     end
     user.get_google_contacts   # Wait for next section
@@ -46,42 +54,87 @@ class User  < ActiveRecord::Base
   end
 
   def get_google_contacts
-    uri = URI.parse("https://www.google.com/m8/feeds/contacts/default/full?max-results=50000")
+  url = "https://www.google.com/m8/feeds/contacts/default/full?access_token=#{token}&alt=json&max-results=100"
+  response = open(url)
+  json = JSON.parse(response.read)
+  my_contacts = json['feed']['entry']
 
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Get.new(uri.request_uri)
-    request['Authorization'] = "Token token=#{self.token}"
-
-
-    response = http.request(request)
-    # stuff = open(response)
-    json = JSON.parse(response.body)
-    my_contacts = json['feed']['entry']
-
-    my_contacts.each do |contact|
-      name = contact['title']['$t'] || nil
-      email = contact['gd$email'] ? contact['gd$email'][0]['address']  : nil
-      tel = contact['gd$phoneNumber'] ? contact["gd$phoneNumber"][0][ "$t"] : nil
-      if contact['link'][1]['type'] == "image/*"
-        picture = "#{contact['link'][1]['href']}?access_token=#{token }"
-      else
-        picture = nil
-      end
-      contacts.create(name: name, email: email, tel: tel, picture:  picture)
+  my_contacts.each do |contact|
+    name = contact['title']['$t'] || nil
+    email = contact['gd$email'] ? contact['gd$email'][0]['address'] : nil
+    tel = contact['gd$phoneNumber'] ? contact["gd$phoneNumber"][0]["$t"] : nil
+    if contact['link'][1]['type'] == "image/*"
+      picture = "#{contact['link'][1]['href']}?access_token=#{token}"
+    else
+      picture = nil
     end
+    contacts.create(name: name, email: email, tel: tel, picture: picture)
   end
+end
+
+  # def get_google_contacts
+  #   # response = HTTParty.get('https://www.google.com/m8/feeds/contacts/default/full?max-results=50000')
+  #   # puts "=======body=========="
+  #   # puts response.body
+  #   # puts "=======code=========="
+  #   # puts response.code
+  #   # puts "=======messag=========="
+  #   # puts response.message
+  #   # puts "=======headers=========="
+  #   # puts response.headers.inspect
+
+  #   uri = URI.parse("https://www.google.com/m8/feeds/contacts/default/full?max-results=50000")
+
+  #   http = Net::HTTP.new(uri.host, uri.port)
+  #   http.use_ssl = true
+  #   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  #   request = Net::HTTP::Get.new(uri.request_uri)
+  #   # request['Authorization'] = env[GOOGLE_CLIENT_SECRET]
+  #   # "Token token=#{self.token}"
+
+  #   response = http.request(request)
+  #   # stuff = open(response)
+  #   puts "=======uri-body=========="
+  #   puts response.body
+  #   puts "=======code=========="
+  #   puts response.code
+  #   puts "=======messag=========="
+  #   puts response.message
+  #   puts "=======headers=========="
+  #   puts response.inspect
+  #   json = JSON.parse(response.body)
+  #   my_contacts = json['feed']['entry']
+
+  #   # my_contacts.each do |contact|
+  #   #   name = contact['title']['$t'] || nil
+  #   #   email = contact['gd$email'] ? contact['gd$email'][0]['address']  : nil
+  #   #   tel = contact['gd$phoneNumber'] ? contact["gd$phoneNumber"][0][ "$t"] : nil
+  #   #   if contact['link'][1]['type'] == "image/*"
+  #   #     picture = "#{contact['link'][1]['href']}?access_token=#{token }"
+  #   #   else
+  #   #     picture = nil
+  #   #   end
+  #   #   contacts.create(name: name, email: email, tel: tel, picture:  picture)
+  #   # end
+  # end
 
   # def auth_client
 
   # end
 
+  def get_google_calendars
+  url = "https://www.googleapis.com/calendar/v3/users/me/calendarList?access_token=#{token}"
+  response = open(url)
+  json = JSON.parse(response.read)
+  calendars = json["items"]
+  calendars.each { |cal| get_events_for_calendar(cal) }
+end
+
   def get_events_for_calendar(cal)
 
-  url = "https://www.googleapis.com/calendar/v3/calendars/#{cal["id"]}/events?access_token=#{self.token}"
-    response = open(url)
+  url = "https://www.googleapis.com/calendar/v3/calendars/#{cal["id"]}/events?access_token=#{token}"
+  response = open(url)
   json = JSON.parse(response.read)
   my_events = json["items"]
 
@@ -100,7 +153,8 @@ class User  < ActiveRecord::Base
                   link: link,
                   calendar: calendar
                   )
-    end
+  end
+
   end
 
 end
