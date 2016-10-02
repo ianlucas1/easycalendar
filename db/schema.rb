@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930235224) do
+ActiveRecord::Schema.define(version: 20161002063825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,28 @@ ActiveRecord::Schema.define(version: 20160930235224) do
     t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "email"
+    t.string   "name"
+    t.string   "tel"
+    t.string   "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.string   "creator"
+    t.datetime "start"
+    t.string   "status"
+    t.string   "link"
+    t.string   "calendar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "invites", force: :cascade do |t|
@@ -115,6 +137,8 @@ ActiveRecord::Schema.define(version: 20160930235224) do
     t.string   "token"
     t.string   "uid"
     t.string   "provider"
+    t.string   "picture"
+    t.string   "refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

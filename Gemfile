@@ -64,3 +64,6 @@ gem "omniauth-google-oauth2"
 gem 'devise'
 gem 'bower-rails'
 gem 'angular-rails'
+
+gem 'json'
+gem 'httparty'
